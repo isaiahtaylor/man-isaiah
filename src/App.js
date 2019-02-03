@@ -23,48 +23,39 @@ class App extends Component {
 
   travelUp = () => {
     const cmds = this.state.commands;
-    if (this.arrowPointer !== cmds.length) {
+    if (this.arrowPointer < cmds.length) {
       for (let i = 0; i < cmds.length; i++) {
         this.arrowPointer++;
-        if (!cmds[cmds.length - this.arrowPointer].isHelp) break;
+        const cmdTemp = cmds[cmds.length - this.arrowPointer];
+        if (!cmdTemp.isHelp && !cmdTemp.isCancelled) break;
       }
       this.setState({
         command: cmds[cmds.length - this.arrowPointer].command
       })
     } else {
+      this.arrowPointer = cmds.length;
       this.setState({ command: 'man isaiah-taylor' });
     }
   }
 
   travelDown = () => {
-    if (this.arrowPointer !== 0) {
+    if (this.arrowPointer >= 1) {
       const cmds = this.state.commands;
       for (let i = 0; i < cmds.length; i++) {
+        const cmdTemp = cmds[cmds.length - this.arrowPointer];
         this.arrowPointer--;
-        if (!cmds[cmds.length - this.arrowPointer].isHelp) break;
+        if (!cmdTemp.isHelp && !cmdTemp.isCancelled) break;
       }
       this.setState({
         command: cmds[cmds.length - this.arrowPointer].command
       })
     } else {
       this.setState({ command: '' });
+      this.arrowPointer = 1;
     }
   }
 
   handleKeyEvent = (event) => {
-    // Up arrow
-    if (event.keyCode === 38) {
-      event.preventDefault();
-      this.travelUp();
-      return;
-    }
-
-    // Down arrow
-    if (event.keyCode === 40) {
-      event.preventDefault();
-      this.travelDown();
-      return;
-    }
 
     // Enter
     if (event.keyCode === 13) {
@@ -80,9 +71,9 @@ class App extends Component {
       } else if (this.state.command === "help") {
         newState.commands.push({ isHelp: true });
       }
-
-      this.setState(newState);
       window.scrollTo(0, document.body.scrollHeight);
+      this.setState(newState);
+
       return;
     }
 
@@ -105,7 +96,7 @@ class App extends Component {
 
         const newState = {
           command: '',
-          commands: [...this.state.commands, { command: this.state.command + '^C' }]
+          commands: [...this.state.commands, { command: this.state.command + '^C', isCancelled: true }]
         };
 
         this.setState(newState);
@@ -156,6 +147,19 @@ class App extends Component {
         window.scrollTo(0, document.body.scrollHeight);
       }
     } else {
+      // Up arrow
+      if (event.keyCode === 38) {
+        event.preventDefault();
+        this.travelUp();
+        return;
+      }
+
+      // Down arrow
+      if (event.keyCode === 40) {
+        event.preventDefault();
+        this.travelDown();
+        return;
+      }
       if (!event.metaKey && event.key.length === 1) {
         this.setState({ blink: false });
         this.setState({ blink: true });
