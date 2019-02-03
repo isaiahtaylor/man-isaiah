@@ -1,0 +1,15 @@
+.line{
+  display: block;
+}
+
+.margin {
+  width: .5em;
+  margin: 0;
+  display: inline-block;
+  color: grey;
+}
+
+.main {
+  display: inline-block;
+  margin: 0;
+}

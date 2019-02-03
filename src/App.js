@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Command from './elements/command';
+import LoginReadout from './elements/loginReadout';
+import ManPage from './elements/manPage';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { manOpen: false };
+  }
+
+  openMan = (event) => {
+    if (event.keyCode === 13) {
+      console.log('yep');
+      this.setState({ manOpen: true });
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.openMan, false);
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {this.state.manOpen ? <div className="App-header"><ManPage /></div> : (
+          <div className="App-header">
+            <LoginReadout />
+            <Command />
+          </div>
+        )}
       </div>
     );
   }
