@@ -1,6 +1,11 @@
 .App {
   /* text-align: center; */
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .App-header {
   min-height: 100vh;
   display: flex;

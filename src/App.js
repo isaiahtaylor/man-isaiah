@@ -10,7 +10,11 @@ class App extends Component {
     this.state = { manOpen: false };
   }
 
-  openMan = (event) => {
+  openManTap = () => {
+    this.setState({ manOpen: true });
+  }
+
+  openManEnter = (event) => {
     if (event.keyCode === 13) {
       console.log('yep');
       this.setState({ manOpen: true });
@@ -18,18 +22,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.openMan, false);
+    document.addEventListener('keydown', this.openManEnter, false);
   }
 
   render() {
     return (
-      <div className="App">
-        {this.state.manOpen ? <div className="App-header"><ManPage /></div> : (
-          <div className="App-header">
-            <LoginReadout />
-            <Command />
-          </div>
-        )}
+      <div onClick={this.openManTap} className="App">
+        {this.state.manOpen ?
+          (
+            <div className="App-header">
+              <ManPage />
+            </div>
+          ) : (
+            <div className="App-header cursor-pointer">
+              <LoginReadout />
+              <Command />
+            </div>
+          )}
       </div>
     );
   }

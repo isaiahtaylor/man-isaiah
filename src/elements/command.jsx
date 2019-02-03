@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Line from './line';
 
 const Command = () => (

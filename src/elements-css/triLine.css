@@ -1,0 +1,13 @@
+.third {
+  margin: 0;
+  display: inline-block;
+  width: 32vw;
+}
+
+.second-third {
+  text-align: center;
+}
+
+.third-third {
+  text-align: right;
+}

@@ -1,0 +1,10 @@
+.indented-line {
+  margin: 0;
+  display: inline-block;
+}
+
+.indent {
+  width: 7vw;
+  margin: 0;
+  display: inline-block;
+}

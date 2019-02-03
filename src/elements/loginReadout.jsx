@@ -9,7 +9,7 @@ const LoginReadout = () => (
     }
 
     main={
-      <code>Last login: None on ttys000</code>
+      'Last login: None on ttys000'
     }
   />
 )
