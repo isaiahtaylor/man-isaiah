@@ -10,12 +10,13 @@ class App extends Component {
     manOpen: false,
     scrollIndex: 0,
     elementCount: 0,
+    commandHistory: [],
     commands: [],
     command: 'man isaiah-taylor',
     blink: true,
   };
 
-  arrowPointer = 0;
+  arrowPointer = 1;
 
   elementCountCallback = (count) => {
     this.setState({ elementCount: count });
@@ -23,36 +24,14 @@ class App extends Component {
 
   travelUp = () => {
     const cmds = this.state.commands;
-    if (this.arrowPointer < cmds.length) {
-      for (let i = 0; i < cmds.length; i++) {
-        this.arrowPointer++;
-        const cmdTemp = cmds[cmds.length - this.arrowPointer];
-        if (!cmdTemp.isHelp && !cmdTemp.isCancelled) break;
-      }
-      this.setState({
-        command: cmds[cmds.length - this.arrowPointer].command
-      })
-    } else {
-      this.arrowPointer = cmds.length;
-      this.setState({ command: 'man isaiah-taylor' });
-    }
+    this.setState({ command: cmds[cmds.length - this.arrowPointer].command });
+    this.arrowPointer++;
   }
 
   travelDown = () => {
-    if (this.arrowPointer >= 1) {
-      const cmds = this.state.commands;
-      for (let i = 0; i < cmds.length; i++) {
-        const cmdTemp = cmds[cmds.length - this.arrowPointer];
-        this.arrowPointer--;
-        if (!cmdTemp.isHelp && !cmdTemp.isCancelled) break;
-      }
-      this.setState({
-        command: cmds[cmds.length - this.arrowPointer].command
-      })
-    } else {
-      this.setState({ command: '' });
-      this.arrowPointer = 1;
-    }
+    const cmds = this.state.commands;
+    this.arrowPointer--;
+    this.setState({ command: cmds[cmds.length - this.arrowPointer].command });
   }
 
   handleManKeys = (event) => {
@@ -97,17 +76,18 @@ class App extends Component {
 
         const newState = {
           command: '',
-          commands: [...this.state.commands, { command: this.state.command }]
+          commands: [...this.state.commands, { command: this.state.command }],
+          commandHistory: [...this.state.commandHistory, { command: this.state.command }]
         };
 
         if (this.state.command === "man isaiah-taylor") {
           newState.manOpen = true;
-          this.setState(newState);
         } else if (this.state.command === "help") {
           newState.commands.push({ isHelp: true });
-          this.setState(newState);
-          window.scrollTo(0, document.body.scrollHeight);
         }
+
+        this.setState(newState);
+        if (this.state.command !== "man isaiah-taylor") window.scrollTo(0, document.body.scrollHeight);
 
         return;
       // Tab
