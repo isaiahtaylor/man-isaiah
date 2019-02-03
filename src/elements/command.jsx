@@ -8,7 +8,7 @@ class Command extends React.Component {
         main={
           <span>
             <code><b>web:~ user$</b> {this.props.text}</code>
-            <span className={this.props.current ? "cursor" : "cursor-blank"}>a</span>
+            {this.props.current && <span className={"cursor"}>a</span>}
           </span>
         }
       />
