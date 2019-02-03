@@ -4,6 +4,7 @@ import TriLine from './triLine';
 import HeaderLine from './headerLine';
 import IndentedLine from './indentedLine';
 import IndentedImage from './indentedImage';
+import Profile1 from '../profile_1.jpg';
 
 const elements = [
   <Line />,
@@ -30,7 +31,9 @@ const elements = [
   <Line />,
   <HeaderLine>DESCRIPTION</HeaderLine>,
   <IndentedLine>Hi, I'm Isaiah Taylor, a software engineer living in North Idaho.</IndentedLine>,
-  <IndentedImage></IndentedImage>,
+  <Line />,
+  <IndentedImage width={200} src={Profile1}></IndentedImage>,
+  <Line />,
   <IndentedLine>Here you will find a some </IndentedLine>,
   <IndentedLine></IndentedLine>,
   <IndentedLine></IndentedLine>,

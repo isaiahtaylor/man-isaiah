@@ -55,119 +55,123 @@ class App extends Component {
     }
   }
 
-  handleKeyEvent = (event) => {
-
-    // Enter
-    if (event.keyCode === 13) {
-      event.preventDefault();
-
-      const newState = {
-        command: '',
-        commands: [...this.state.commands, { command: this.state.command }]
-      };
-
-      if (this.state.command === "man isaiah-taylor") {
-        newState.manOpen = true;
-      } else if (this.state.command === "help") {
-        newState.commands.push({ isHelp: true });
-      }
-      window.scrollTo(0, document.body.scrollHeight);
-      this.setState(newState);
-
-      return;
-    }
-
-    // Tab
-    if (event.keyCode === 9) {
-      event.preventDefault();
-
-      if (this.state.command[0] === 'm') {
-        this.setState({ command: 'man isaiah-taylor' })
-      } else if (this.state.command[0] === 'h') {
-        this.setState({ command: 'help' })
-      }
-      return;
-    }
-
-    // Control
-    if (event.ctrlKey) {
-      if (event.keyCode === 67) {
-        event.preventDefault();
-
-        const newState = {
-          command: '',
-          commands: [...this.state.commands, { command: this.state.command + '^C', isCancelled: true }]
-        };
-
-        this.setState(newState);
-        window.scrollTo(0, document.body.scrollHeight);
-      }
-      return;
-    }
-
-    // Backspace
-    if (event.keyCode === 8 && !this.state.manOpen) {
-      event.preventDefault();
-      this.setState({ blink: false });
-      this.setState({ blink: true });
-
-      this.setState({
-        command: this.state.command.slice(0, -1)
-      })
-      return;
-    }
-
-    if (this.state.manOpen) {
+  handleManKeys = (event) => {
+    switch (event.keyCode) {
       // Down arrow
-      if (event.keyCode === 40) {
+      case 40:
         event.preventDefault();
         if (this.state.scrollIndex < this.state.elementCount) {
           this.setState({
             scrollIndex: this.state.scrollIndex + 1
           })
         }
-      }
-
+        break;
       // Up arrow
-      if (event.keyCode === 38) {
+      case 38:
         event.preventDefault();
         if (this.state.scrollIndex > 0) {
           this.setState({
             scrollIndex: this.state.scrollIndex - 1
           })
         }
-      }
-
+        break;
       // Q
-      if (event.keyCode === 81) {
+      case 81:
         event.preventDefault();
         this.setState({
           manOpen: false
         })
         window.scrollTo(0, document.body.scrollHeight);
-      }
-    } else {
-      // Up arrow
-      if (event.keyCode === 38) {
-        event.preventDefault();
-        this.travelUp();
-        return;
-      }
+        break;
 
-      // Down arrow
-      if (event.keyCode === 40) {
+      default:
+        break;
+    }
+  }
+
+  handleBashKeys = (event) => {
+    switch (event.keyCode) {
+      // Enter
+      case 13:
         event.preventDefault();
-        this.travelDown();
+
+        const newState = {
+          command: '',
+          commands: [...this.state.commands, { command: this.state.command }]
+        };
+
+        if (this.state.command === "man isaiah-taylor") {
+          newState.manOpen = true;
+        } else if (this.state.command === "help") {
+          newState.commands.push({ isHelp: true });
+        }
+        window.scrollTo(0, document.body.scrollHeight);
+        this.setState(newState);
+
         return;
-      }
-      if (!event.metaKey && event.key.length === 1) {
+      // Tab
+      case 9:
+        event.preventDefault();
+
+        if (this.state.command[0] === 'm') {
+          this.setState({ command: 'man isaiah-taylor' })
+        } else if (this.state.command[0] === 'h') {
+          this.setState({ command: 'help' })
+        }
+        return;
+      // Ctrl-C
+      case 67:
+        if (event.ctrlKey) {
+          event.preventDefault();
+
+          const newState = {
+            command: '',
+            commands: [...this.state.commands, { command: this.state.command + '^C', isCancelled: true }]
+          };
+
+          this.setState(newState);
+          window.scrollTo(0, document.body.scrollHeight);
+        }
+        return;
+      // Backspace
+      case 8:
+        event.preventDefault();
         this.setState({ blink: false });
         this.setState({ blink: true });
 
         this.setState({
-          command: this.state.command + event.key
+          command: this.state.command.slice(0, -1)
         })
-      }
+        return;
+      // Up arrow
+      case 38:
+        event.preventDefault();
+        this.travelUp();
+        return;
+      // Down arrow
+      case 40:
+        event.preventDefault();
+        this.travelDown();
+        return;
+
+      default:
+    }
+    if (!event.metaKey && event.key.length === 1) {
+      this.setState({ blink: false });
+      this.setState({ blink: true });
+
+      this.setState({
+        command: this.state.command + event.key
+      })
+    }
+  }
+
+
+  handleKeyEvent = (event) => {
+    if (this.state.manOpen) {
+      this.handleManKeys(event);
+    } else {
+      this.handleBashKeys(event);
     }
   }
 

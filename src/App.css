@@ -21,7 +21,7 @@
 }
 
 body {
-  background-color: #FEF3A1;
+  background-color: #fbf5c9;
 }
 
 .cursor {
@@ -33,8 +33,8 @@ body {
 }
 
 .cursor-blank {
-  background-color: #FEF3A1;
-  color: #FEF3A1;
+  background-color: #fbf5c9;
+  color: #fbf5c9;
 }
 
 @keyframes blink {
@@ -43,8 +43,8 @@ body {
     color: black;
   }
   50% {
-    background-color: #FEF3A1;
-    color: #FEF3A1;
+    background-color: #fbf5c9;
+    color: #fbf5c9;
   }
 }
 
@@ -54,8 +54,8 @@ body {
     color: black;
   }
   50% {
-    background-color: #FEF3A1;
-    color: #FEF3A1;
+    background-color: #fbf5c9;
+    color: #fbf5c9;
   }
 }
 
@@ -65,8 +65,8 @@ body {
     color: black;
   }
   50% {
-    background-color: #FEF3A1;
-    color: #FEF3A1;
+    background-color: #fbf5c9;
+    color: #fbf5c9;
   }
 }
 
@@ -76,8 +76,8 @@ body {
     color: black;
   }
   50% {
-    background-color: #FEF3A1;
-    color: #FEF3A1;
+    background-color: #fbf5c9;
+    color: #fbf5c9;
   }
 }
 
@@ -87,8 +87,8 @@ body {
     color: black;
   }
   50% {
-    background-color: #FEF3A1;
-    color: #FEF3A1;
+    background-color: #fbf5c9;
+    color: #fbf5c9;
   }
 }
 

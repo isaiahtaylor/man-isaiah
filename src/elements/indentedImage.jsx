@@ -1,10 +1,12 @@
 import React from 'react';
-import image from '../logo.svg';
+import IndentedLine from './indentedLine';
 
 class Command extends React.Component {
   render() {
     return (
-      <img src={image}/>
+      <IndentedLine >
+          <img alt="react_im" width={this.props.width} src={this.props.src} />
+      </IndentedLine>
     )
   }
 }

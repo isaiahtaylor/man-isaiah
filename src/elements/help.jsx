@@ -1,5 +1,4 @@
 import React from 'react';
-import IndentedLine from './indentedLine';
 import Line from './line';
 import '../elements-css/help.css';
 
@@ -19,7 +18,7 @@ class Help extends React.Component {
         <Line main={<>my resume, try typing <b>`man isaiah-taylor`</b>. Or, just</>}/>
         <Line main={<>type a few letters and hit <b>tab</b> to auto-complete!</>}/>
         <Line main={<><b>Ctrl-C</b> will give you a new line, and you can navigate</>}/>
-        <Line main={<>around the <b>man</b> page normally. Check <a href="">here</a> for</>}/>
+        <Line main={<>around the <b>man</b> page normally. Check <a href="https://wiki.gentoo.org/wiki/Man_page/Navigate">here</a> for</>}/>
         <Line main={<>general instructions on navigating a <b>man</b> page.</>}/>
         <Line />
         <Line main={<>Otherwise, enjoy your stay! If you're curious about how</>}/>
