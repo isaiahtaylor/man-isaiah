@@ -102,11 +102,12 @@ class App extends Component {
 
         if (this.state.command === "man isaiah-taylor") {
           newState.manOpen = true;
+          this.setState(newState);
         } else if (this.state.command === "help") {
           newState.commands.push({ isHelp: true });
+          this.setState(newState);
+          window.scrollTo(0, document.body.scrollHeight);
         }
-        window.scrollTo(0, document.body.scrollHeight);
-        this.setState(newState);
 
         return;
       // Tab
