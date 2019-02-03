@@ -7,11 +7,11 @@ class TriLine extends React.Component {
     return (
       <Line
         main={
-          <div>
-            <p className="first-third third">{this.props.first}</p>
-            <p className="second-third third">{this.props.second}</p>
-            <p className="third-third third">{this.props.third}</p>
-          </div>
+          <span>
+            <span className="first-third third">{this.props.first}</span>
+            <span className="second-third third">{this.props.second}</span>
+            <span className="third-third third">{this.props.third}</span>
+          </span>
         }
       />
     )

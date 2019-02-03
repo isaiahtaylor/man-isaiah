@@ -1,6 +1,6 @@
 import React from 'react';
 import Line from './line';
-import '../elements-css/indentedLine.css';
+import '../elements-css/inputLine.css';
 
 class IndentedLine extends React.Component {
   render() {

@@ -7,7 +7,7 @@ class HeaderLine extends React.Component {
     return (
       <Line
         main={
-          <p className="man-header"><b>{this.props.children}</b></p>
+          <span className="man-header"><b>{this.props.children}</b></span>
         }
       />
     )

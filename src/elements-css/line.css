@@ -2,6 +2,14 @@
   display: block;
 }
 
+.line-abs {
+  height: 1.4em;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background-color: #FEF3A1;
+}
+
 .margin {
   width: .5em;
   margin: 0;
@@ -12,4 +20,9 @@
 .main {
   display: inline-block;
   margin: 0;
+}
+
+.control-cursor {
+  background-color: grey;
+  color: grey;
 }

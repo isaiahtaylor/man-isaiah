@@ -13,6 +13,7 @@
   /* align-items: center; */
   font-size: calc(10px + 2vmin);
   color: black;
+  padding-bottom: 3px;
 }
 
 .App-link {
@@ -29,6 +30,11 @@ body {
   -ms-animation: 1s blink step-end infinite;
   -o-animation: 1s blink step-end infinite;
   animation: 1s blink step-end infinite;
+}
+
+.cursor-blank {
+  background-color: #FEF3A1;
+  color: #FEF3A1;
 }
 
 @keyframes blink {
