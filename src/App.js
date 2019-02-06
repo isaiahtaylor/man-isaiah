@@ -23,6 +23,14 @@ class App extends Component {
     this.setState({ elementCount: count });
   }
 
+  closeMan = (event) => {
+    event.preventDefault();
+    this.setState({
+      manOpen: false
+    })
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
   travelUp = () => {
     const cmds = this.state.commands;
     this.setState({ command: cmds[cmds.length - this.arrowPointer].command });
@@ -35,35 +43,45 @@ class App extends Component {
     this.setState({ command: cmds[cmds.length - this.arrowPointer].command });
   }
 
+  scrollUp = (event) => {
+    event.preventDefault();
+    if (this.state.scrollIndex > 0) {
+      this.setState({
+        scrollIndex: this.state.scrollIndex - 1
+      })
+      window.scrollTo(0, 0);
+    }
+  }
+
+  scrollDown = (event) => {
+    event.preventDefault();
+    if (this.state.scrollIndex < this.state.elementCount) {
+      this.setState({
+        scrollIndex: this.state.scrollIndex + 1
+      })
+      window.scrollTo(0, 0);
+    }
+  }
+
   handleManKeys = (event) => {
     switch (event.keyCode) {
-      // Down arrow
+      // Down arrow or j
       case 40:
-        event.preventDefault();
-        if (this.state.scrollIndex < this.state.elementCount) {
-          this.setState({
-            scrollIndex: this.state.scrollIndex + 1
-          })
-          window.scrollTo(0, 0);
-        }
+        this.scrollDown(event);
         break;
-      // Up arrow
+      case 74:
+        this.scrollDown(event);
+        break;
+      // Up arrow or k
       case 38:
-        event.preventDefault();
-        if (this.state.scrollIndex > 0) {
-          this.setState({
-            scrollIndex: this.state.scrollIndex - 1
-          })
-          window.scrollTo(0, 0);
-        }
+        this.scrollUp(event);
+        break;
+      case 75:
+        this.scrollUp(event);
         break;
       // Q
       case 81:
-        event.preventDefault();
-        this.setState({
-          manOpen: false
-        })
-        window.scrollTo(0, document.body.scrollHeight);
+        this.closeMan(event);
         break;
 
       default:
