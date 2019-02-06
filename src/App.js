@@ -3,6 +3,7 @@ import Command from './elements/command';
 import LoginReadout from './elements/loginReadout';
 import ManPage from './elements/manPage';
 import Help from './elements/help';
+import HelpTip from './elements/helpTip';
 import './App.css';
 
 class App extends Component {
@@ -175,6 +176,7 @@ class App extends Component {
             </div>
           ) : (
             <div className="App-header cursor-pointer">
+              <HelpTip />
               <LoginReadout />
               {this.state.commands.map((cmd, i) => {
                 if (!cmd.isHelp) {

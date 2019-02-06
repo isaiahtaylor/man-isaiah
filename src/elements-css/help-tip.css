@@ -1,0 +1,13 @@
+.tip {
+  height: 7vw;
+  width: 15vw;
+  position: fixed;
+  right: 1vw;
+  top: 1vw;
+  background: white;
+  border: 2px dashed darkgray;
+}
+
+.tip-p {
+  margin: 2px;
+}
