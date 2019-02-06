@@ -17,6 +17,7 @@ class App extends Component {
     blink: true,
   };
 
+
   arrowPointer = 1;
 
   elementCountCallback = (count) => {
@@ -63,7 +64,22 @@ class App extends Component {
     }
   }
 
+  scrollTop = () => {
+    this.setState({
+      scrollIndex: 0
+    });
+    window.scrollTo(0, 0);
+  }
+
+  scrollBottom = () => {
+    this.setState({
+      scrollIndex: this.state.elementCount - (Math.round(((window.screen.height * 1.0) / 
+        document.body.scrollHeight) * this.state.elementCount) - 1)
+    })
+  }
+
   handleManKeys = (event) => {
+    console.log(event);
     switch (event.keyCode) {
       // Down arrow or j
       case 40:
@@ -78,6 +94,15 @@ class App extends Component {
         break;
       case 75:
         this.scrollUp(event);
+        break;
+      // g or G
+      case 71:
+        event.preventDefault();
+        if (event.shiftKey) {
+          this.scrollBottom();
+        } else {
+          this.scrollTop();
+        }
         break;
       // Q
       case 81:
