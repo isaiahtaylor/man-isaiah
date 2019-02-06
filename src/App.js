@@ -43,6 +43,7 @@ class App extends Component {
           this.setState({
             scrollIndex: this.state.scrollIndex + 1
           })
+          window.scrollTo(0, 0);
         }
         break;
       // Up arrow
@@ -52,6 +53,7 @@ class App extends Component {
           this.setState({
             scrollIndex: this.state.scrollIndex - 1
           })
+          window.scrollTo(0, 0);
         }
         break;
       // Q
