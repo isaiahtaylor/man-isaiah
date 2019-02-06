@@ -83,14 +83,16 @@ class App extends Component {
           commandHistory: [...this.state.commandHistory, { command: this.state.command }]
         };
 
-        if (this.state.command === "man isaiah-taylor") {
+        let cmd = this.state.command;
+
+        if (cmd === "man isaiah-taylor") {
           newState.manOpen = true;
-        } else if (this.state.command === "help") {
+        } else if (cmd === "help") {
           newState.commands.push({ isHelp: true });
         }
 
         this.setState(newState);
-        if (this.state.command !== "man isaiah-taylor") window.scrollTo(0, document.body.scrollHeight);
+        if (cmd !== "man isaiah-taylor") window.scrollTo(0, document.body.scrollHeight);
 
         return;
       // Tab
