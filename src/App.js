@@ -114,8 +114,9 @@ class App extends Component {
 
           this.setState(newState);
           window.scrollTo(0, document.body.scrollHeight);
+          return;
         }
-        return;
+        break;
       // Backspace
       case 8:
         event.preventDefault();
