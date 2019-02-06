@@ -26,7 +26,7 @@ class Help extends React.Component {
         <Line main={<>free to submit any bugs or comments there.</>}/>
         <Line />
         <Line main={<>You can get in touch with me via email at</>}/>
-        <Line main={<><a href="mailto://isaiah.p.taylor@gmail.com">isaiah.p.taylor@gmail.com</a>.</>}/>
+        <Line main={<><a href="mailto:isaiah.p.taylor@gmail.com">isaiah.p.taylor@gmail.com</a>.</>}/>
         <Line main={<>* * * * * * * * * * * * * * * * * * * * * * * * * * * *</>}/>
         <Line />
       </>
