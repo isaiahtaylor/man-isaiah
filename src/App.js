@@ -73,7 +73,7 @@ class App extends Component {
 
   scrollBottom = () => {
     this.setState({
-      scrollIndex: this.state.elementCount - (Math.round(((window.screen.height * 1.0) / 
+      scrollIndex: this.state.elementCount - (Math.round(((window.screen.height * 1.0) /
         document.body.scrollHeight) * this.state.elementCount) - 1)
     })
   }
@@ -128,10 +128,23 @@ class App extends Component {
 
         let cmd = this.state.command;
 
-        if (cmd === "man isaiah-taylor") {
-          newState.manOpen = true;
-        } else if (cmd === "help") {
-          newState.commands.push({ isHelp: true });
+        switch (cmd) {
+          case "man isaiah-taylor":
+            newState.manOpen = true;
+            break;
+          case "help":
+            newState.commands.push({ isHelp: true });
+            break;
+          case "clear":
+            this.setState({
+              commandHistory: [],
+              commands: [],
+              command: '',
+              blink: true
+            });
+            return;
+          default:
+            break;
         }
 
         this.setState(newState);
