@@ -21,6 +21,10 @@ class Help extends React.Component {
         <Line main={<>around the <b>man</b> page normally. Check <a href="https://wiki.gentoo.org/wiki/Man_page/Navigate">here</a> for</>}/>
         <Line main={<>general instructions on navigating a <b>man</b> page.</>}/>
         <Line />
+        <Line main={<>Other commands:</>}/>
+        <Line main={<><b>exit</b>: exits to SO</>}/>
+        <Line main={<><b>git</b>: opens this project on github</>}/>
+        <Line />
         <Line main={<>Otherwise, enjoy your stay! If you're curious about how</>}/>
         <Line main={<>this was built, check it out on <a href="https://github.com/iptaylortechnical/man-isaiah">GitHub</a>. Please feel</>}/>
         <Line main={<>free to submit any bugs or comments there.</>}/>

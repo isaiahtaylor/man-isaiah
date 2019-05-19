@@ -114,7 +114,11 @@ class App extends Component {
     }
   }
 
-  handleBashKeys = (event) => {
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  handleBashKeys = async (event) => {
     switch (event.keyCode) {
       // Enter
       case 13:
@@ -134,6 +138,12 @@ class App extends Component {
             break;
           case "help":
             newState.commands.push({ isHelp: true });
+            break;
+          case "exit":
+            window.location = "https://stackoverflow.com/cv/isaiahtaylor";
+            break;
+          case "git":
+            window.open("https://github.com/iptaylortechnical/man-isaiah");
             break;
           case "clear":
             this.setState({
@@ -155,13 +165,25 @@ class App extends Component {
       case 9:
         event.preventDefault();
 
-        if (this.state.command[0] === 'm') {
-          this.setState({ command: 'man isaiah-taylor' })
-        } else if (this.state.command[0] === 'h') {
-          this.setState({ command: 'help' })
+        switch (this.state.command[0]) {
+          case 'm':
+            this.setState({ command: 'man isaiah-taylor' });
+            break;
+          case 'h':
+            this.setState({ command: 'help' })
+            break;
+          case 'g':
+            this.setState({ command: 'git' });
+            break;
+          case 'e':
+            this.setState({ command: 'exit' });
+            break;
+          default:
+            break;
         }
+
         return;
-      // Ctrl-C
+      // Ctrl-c
       case 67:
         if (event.ctrlKey) {
           event.preventDefault();
@@ -173,6 +195,25 @@ class App extends Component {
 
           this.setState(newState);
           window.scrollTo(0, document.body.scrollHeight);
+          return;
+        }
+        break;
+      // Ctrl-d
+      case 68:
+        if (event.ctrlKey) {
+          event.preventDefault();
+
+          const newState = {
+            command: '',
+            commands: [...this.state.commands, { command: this.state.command + '^D', isCancelled: true },
+            { command: 'exit'}]
+          };
+
+          this.setState(newState);
+          
+          await this.sleep(500);
+
+          window.location = "https://stackoverflow.com/cv/isaiahtaylor"
           return;
         }
         break;
