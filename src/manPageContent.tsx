@@ -1,10 +1,10 @@
 import React from 'react';
-import Line from './line';
-import TriLine from './triLine';
-import HeaderLine from './headerLine';
-import IndentedLine from './indentedLine';
-import IndentedImage from './indentedImage';
-import { S3_MANUAL_PREFIX } from '../constants';
+import IndentedLine from './elements/indentedLine';
+import Line from './elements/line';
+import TriLine from './elements/triLine';
+import HeaderLine from './elements/headerLine';
+import IndentedImage from './elements/indentedImage';
+import { S3_MANUAL_PREFIX } from './constants';
 
 const IL = IndentedLine;
 
@@ -161,30 +161,6 @@ const elements = [
   <IL>For your consideration. To contact me, send me an email <a href="mailto:isaiah.p.taylor@gmail.com">here</a>.</IL>,
   <IL></IL>,
   <IL></IL>,
-]
+];
 
-class ManPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props.elementCountCallback(elements.length);
-  }
-
-  render() {
-
-    const { scrollIndex } = this.props;
-    const renderElements = elements.slice(scrollIndex);
-
-    return (
-      <span>
-        <Line absolute={true}
-          main={
-            <span>:<span className="control-cursor">a</span></span>
-          }
-        />
-        {renderElements.map((element, i) => <span key={i}>{element}</span>)}
-      </span>
-    )
-  }
-}
-
-export default ManPage;
+export default elements;

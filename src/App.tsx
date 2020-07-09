@@ -5,14 +5,26 @@ import ManPage from './elements/manPage';
 import Help from './elements/help';
 import HelpTip from './elements/helpTip';
 import './App.css';
+import { CommandRecord } from './types';
+import manPageContent from './manPageContent';
+
+interface AppState {
+  scrollIndex: number;
+  elementCount: number;
+  commandHistory: CommandRecord[];
+  commands: CommandRecord[],
+  command: string,
+  blink?: boolean,
+  manOpen?: boolean;
+}
 
 class App extends Component {
-  state = {
+  state: AppState = {
     manOpen: false,
     scrollIndex: 0,
-    elementCount: 0,
+    elementCount: manPageContent.length,
     commandHistory: [],
-    commands: [],
+    commands: [] as CommandRecord[],
     command: 'man isaiah-taylor',
     blink: true,
   };
@@ -20,11 +32,7 @@ class App extends Component {
 
   arrowPointer = 1;
 
-  elementCountCallback = (count) => {
-    this.setState({ elementCount: count });
-  }
-
-  closeMan = (event) => {
+  closeMan = (event: KeyboardEvent) => {
     event.preventDefault();
     this.setState({
       manOpen: false
@@ -44,7 +52,7 @@ class App extends Component {
     this.setState({ command: cmds[cmds.length - this.arrowPointer].command });
   }
 
-  scrollUp = (event) => {
+  scrollUp = (event: KeyboardEvent) => {
     event.preventDefault();
     if (this.state.scrollIndex > 0) {
       this.setState({
@@ -54,7 +62,7 @@ class App extends Component {
     }
   }
 
-  scrollDown = (event) => {
+  scrollDown = (event: KeyboardEvent) => {
     event.preventDefault();
     if (this.state.scrollIndex < this.state.elementCount) {
       this.setState({
@@ -78,7 +86,7 @@ class App extends Component {
     })
   }
 
-  handleManKeys = (event) => {
+  handleManKeys = (event: KeyboardEvent) => {
     console.log(event);
     switch (event.keyCode) {
       // Down arrow or j
@@ -114,20 +122,20 @@ class App extends Component {
     }
   }
 
-  sleep(ms) {
+  sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  handleBashKeys = async (event) => {
+  handleBashKeys = async (event: KeyboardEvent) => {
     switch (event.keyCode) {
       // Enter
       case 13:
         event.preventDefault();
 
-        const newState = {
+        const newState: Partial<AppState> = {
           command: '',
           commands: [...this.state.commands, { command: this.state.command }],
-          commandHistory: [...this.state.commandHistory, { command: this.state.command }]
+          commandHistory: [...this.state.commandHistory, { command: this.state.command }],
         };
 
         let cmd = this.state.command;
@@ -137,10 +145,10 @@ class App extends Component {
             newState.manOpen = true;
             break;
           case "help":
-            newState.commands.push({ isHelp: true });
+            newState.commands?.push({ isHelp: true });
             break;
           case "exit":
-            window.location = "https://stackoverflow.com/cv/isaiahtaylor";
+            window.location.href = "https://stackoverflow.com/cv/isaiahtaylor";
             break;
           case "git":
             window.open("https://github.com/iptaylortechnical/man-isaiah");
@@ -206,14 +214,14 @@ class App extends Component {
           const newState = {
             command: '',
             commands: [...this.state.commands, { command: this.state.command + '^D', isCancelled: true },
-            { command: 'exit'}]
+            { command: 'exit' }]
           };
 
           this.setState(newState);
-          
+
           await this.sleep(500);
 
-          window.location = "https://stackoverflow.com/cv/isaiahtaylor"
+          window.location.href = "https://stackoverflow.com/cv/isaiahtaylor"
           return;
         }
         break;
@@ -251,7 +259,7 @@ class App extends Component {
   }
 
 
-  handleKeyEvent = (event) => {
+  handleKeyEvent = (event: KeyboardEvent) => {
     if (this.state.manOpen) {
       this.handleManKeys(event);
     } else {
@@ -271,7 +279,7 @@ class App extends Component {
             <div className="App-header">
               <ManPage
                 scrollIndex={this.state.scrollIndex}
-                elementCountCallback={this.elementCountCallback} />
+              />
             </div>
           ) : (
             <div className="App-header cursor-pointer">
@@ -279,12 +287,12 @@ class App extends Component {
               <LoginReadout />
               {this.state.commands.map((cmd, i) => {
                 if (!cmd.isHelp) {
-                  return (<Command text={cmd.command} key={i} current={false} />);
+                  return (<Command text={cmd.command || ''} key={i} current={false} />);
                 } else {
                   return <Help />;
                 }
               })}
-              <Command text={this.state.command} current={this.state.blink} />
+              <Command text={this.state.command} current={this.state.blink || false} />
             </div>
           )}
       </div>
