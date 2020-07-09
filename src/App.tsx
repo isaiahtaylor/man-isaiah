@@ -6,6 +6,7 @@ import Help from './elements/help';
 import HelpTip from './elements/helpTip';
 import './App.css';
 import { CommandRecord } from './types';
+import Completer from './utils/tabCompleter';
 import manPageContent from './manPageContent';
 
 interface AppState {
@@ -16,7 +17,18 @@ interface AppState {
   command: string,
   blink?: boolean,
   manOpen?: boolean;
+  currentOptions?: string[];
 }
+
+const allCommands: CommandRecord[] = [
+  { command: 'man isaiah-taylor' },
+  { command: 'help' },
+  { command: 'exit' },
+  { command: 'git' },
+  { command: 'clear' },
+];
+
+const completer = Completer(allCommands.map(({ command }) => command));
 
 class App extends Component {
   state: AppState = {
@@ -136,6 +148,7 @@ class App extends Component {
           command: '',
           commands: [...this.state.commands, { command: this.state.command }],
           commandHistory: [...this.state.commandHistory, { command: this.state.command }],
+          currentOptions: [],
         };
 
         let cmd = this.state.command;
@@ -145,7 +158,7 @@ class App extends Component {
             newState.manOpen = true;
             break;
           case "help":
-            newState.commands?.push({ isHelp: true });
+            newState.commands?.push({ command: 'help', isHelp: true });
             break;
           case "exit":
             window.location.href = "https://stackoverflow.com/cv/isaiahtaylor";
@@ -173,22 +186,8 @@ class App extends Component {
       case 9:
         event.preventDefault();
 
-        switch (this.state.command[0]) {
-          case 'm':
-            this.setState({ command: 'man isaiah-taylor' });
-            break;
-          case 'h':
-            this.setState({ command: 'help' })
-            break;
-          case 'g':
-            this.setState({ command: 'git' });
-            break;
-          case 'e':
-            this.setState({ command: 'exit' });
-            break;
-          default:
-            break;
-        }
+        const completionAttempt = completer.complete(this.state.command);
+        completionAttempt && this.setState({ command: completionAttempt });
 
         return;
       // Ctrl-c
@@ -196,8 +195,9 @@ class App extends Component {
         if (event.ctrlKey) {
           event.preventDefault();
 
-          const newState = {
+          const newState: Partial<AppState> = {
             command: '',
+            currentOptions: [],
             commands: [...this.state.commands, { command: this.state.command + '^C', isCancelled: true }]
           };
 
@@ -214,7 +214,8 @@ class App extends Component {
           const newState = {
             command: '',
             commands: [...this.state.commands, { command: this.state.command + '^D', isCancelled: true },
-            { command: 'exit' }]
+            { command: 'exit' }],
+            currentOptions: [],
           };
 
           this.setState(newState);
@@ -231,9 +232,12 @@ class App extends Component {
         this.setState({ blink: false });
         this.setState({ blink: true });
 
-        this.setState({
-          command: this.state.command.slice(0, -1)
-        })
+        const newCommand = this.state.command.slice(0, -1);
+        const backState: Partial<AppState> = {};
+
+        backState.currentOptions = newCommand ? completer.options(newCommand) : [];
+        backState.command = newCommand;
+        this.setState(backState);
         return;
       // Up arrow
       case 38:
@@ -253,6 +257,7 @@ class App extends Component {
       this.setState({ blink: true });
 
       this.setState({
+        currentOptions: completer.options(this.state.command + event.key),
         command: this.state.command + event.key
       })
     }
@@ -289,10 +294,13 @@ class App extends Component {
                 if (!cmd.isHelp) {
                   return (<Command text={cmd.command || ''} key={i} current={false} />);
                 } else {
-                  return <Help />;
+                  return <Help key={i} />;
                 }
               })}
-              <Command text={this.state.command} current={this.state.blink || false} />
+              <Command text={this.state.command} options={this.state.currentOptions} current={this.state.blink || false} />
+              <p className="options">{
+                this.state.currentOptions && (this.state.currentOptions.length > 1 ? this.state.currentOptions?.map((option) => <span key={option}>{option}&nbsp;</span>) : '')
+              }</p>
             </div>
           )}
       </div>

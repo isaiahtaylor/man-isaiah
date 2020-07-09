@@ -30,15 +30,29 @@ body {
   -ms-animation: 1s blink step-end infinite;
   -o-animation: 1s blink step-end infinite;
   animation: 1s blink step-end infinite;
+  color: black;
 }
 
+.cursor-grey {
+  -webkit-animation: 1s blink-grey step-end infinite;
+  -moz-animation: 1s blink-grey step-end infinite;
+  -ms-animation: 1s blink-grey step-end infinite;
+  -o-animation: 1s blink-grey step-end infinite;
+  animation: 1s blink-grey step-end infinite;
+  color: grey;
+}
 .cursor-blank {
   background-color: #fbf5c9;
   color: #fbf5c9;
 }
 
+.helper {
+  color: grey;
+}
+
 @keyframes blink {
-  from, to {
+  from,
+  to {
     background-color: black;
     color: black;
   }
@@ -49,7 +63,8 @@ body {
 }
 
 @-moz-keyframes blink {
-  from, to {
+  from,
+  to {
     background-color: black;
     color: black;
   }
@@ -60,7 +75,8 @@ body {
 }
 
 @-webkit-keyframes blink {
-  from, to {
+  from,
+  to {
     background-color: black;
     color: black;
   }
@@ -71,7 +87,8 @@ body {
 }
 
 @-ms-keyframes blink {
-  from, to {
+  from,
+  to {
     background-color: black;
     color: black;
   }
@@ -82,7 +99,8 @@ body {
 }
 
 @-o-keyframes blink {
-  from, to {
+  from,
+  to {
     background-color: black;
     color: black;
   }
@@ -92,6 +110,61 @@ body {
   }
 }
 
+@keyframes blink-grey {
+  from,
+  to {
+    background-color: black;
+  }
+  50% {
+    background-color: #fbf5c9;
+  }
+}
+
+@-moz-keyframes blink-grey {
+  from,
+  to {
+    background-color: black;
+  }
+  50% {
+    background-color: #fbf5c9;
+  }
+}
+
+@-webkit-keyframes blink-grey {
+  from,
+  to {
+    background-color: black;
+  }
+  50% {
+    background-color: #fbf5c9;
+  }
+}
+
+@-ms-keyframes blink-grey {
+  from,
+  to {
+    background-color: black;
+  }
+  50% {
+    background-color: #fbf5c9;
+  }
+}
+
+@-o-keyframes blink-grey {
+  from,
+  to {
+    background-color: black;
+  }
+  50% {
+    background-color: #fbf5c9;
+  }
+}
+
 .greyed {
   color: lightgrey;
+}
+
+.options {
+  margin-top: 0;
+  color: grey;
 }
