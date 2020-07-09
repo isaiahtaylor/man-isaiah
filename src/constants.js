@@ -1,0 +1,1 @@
+export const S3_MANUAL_PREFIX  = 'https://man-isaiah-manual-bucket.s3-us-west-2.amazonaws.com/';

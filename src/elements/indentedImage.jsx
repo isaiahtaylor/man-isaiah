@@ -1,7 +1,7 @@
 import React from 'react';
 import IndentedLine from './indentedLine';
 
-class Command extends React.Component {
+class IndentedImage extends React.Component {
   render() {
     return (
       <IndentedLine >
@@ -11,4 +11,4 @@ class Command extends React.Component {
   }
 }
 
-export default Command;
+export default IndentedImage;
