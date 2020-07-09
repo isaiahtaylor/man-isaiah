@@ -11,7 +11,7 @@ export default function Help(): JSX.Element {
       <Line />
       <Line main={<><b>NOTE:</b> If you are not a programmer, and this is</>} />
       <Line main={<>all confusing to you, my apologies. You can view my </>} />
-      <Line main={<>normal resumé over at <a href="https://stackoverflow.com/cv/isaiahtaylor">Stack Overflow</a>.</>} />
+      <Line main={<>normal resumé over at <a href="https://www.linkedin.com/in/isaiahptaylor/">LinkedIn</a>.</>} />
       <Line />
       <Line main={<>This is a shell written from scratch in React. To view</>} />
       <Line main={<>my resume, try typing <b>`man isaiah-taylor`</b>. Or, just</>} />
@@ -25,7 +25,7 @@ export default function Help(): JSX.Element {
       <Line main={<><b>git</b>: opens this project on github</>} />
       <Line />
       <Line main={<>Otherwise, enjoy your stay! If you're curious about how</>}/>
-      <Line main={<>this was built, check it out on <a href="https://github.com/iptaylortechnical/man-isaiah">GitHub</a>. Please feel</>} />
+      <Line main={<>this was built, check it out on <a href="https://github.com/isaiahtaylor/man-isaiah">GitHub</a>. Please feel</>} />
       <Line main={<>free to submit any bugs or comments there.</>} />
       <Line />
       <Line main={<>You can get in touch with me via email at</>} />

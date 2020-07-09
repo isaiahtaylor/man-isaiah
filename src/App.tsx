@@ -161,10 +161,10 @@ class App extends Component {
             newState.commands?.push({ command: 'help', isHelp: true });
             break;
           case "exit":
-            window.location.href = "https://stackoverflow.com/cv/isaiahtaylor";
+            window.location.href = "https://www.linkedin.com/in/isaiahptaylor/";
             break;
           case "git":
-            window.open("https://github.com/iptaylortechnical/man-isaiah");
+            window.open("https://github.com/isaiahtaylor/man-isaiah");
             break;
           case "clear":
             this.setState({
@@ -222,7 +222,7 @@ class App extends Component {
 
           await this.sleep(500);
 
-          window.location.href = "https://stackoverflow.com/cv/isaiahtaylor"
+          window.location.href = "https://www.linkedin.com/in/isaiahptaylor/";
           return;
         }
         break;
