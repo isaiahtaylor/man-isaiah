@@ -21,7 +21,7 @@ export default function Help(): JSX.Element {
       <Line main={<>general instructions on navigating a <b>man</b> page.</>} />
       <Line />
       <Line main={<>Other commands:</>} />
-      <Line main={<><b>exit</b>: exits to SO</>} />
+      <Line main={<><b>exit</b>: exits to LinkedIn</>} />
       <Line main={<><b>git</b>: opens this project on github</>} />
       <Line />
       <Line main={<>Otherwise, enjoy your stay! If you're curious about how</>}/>

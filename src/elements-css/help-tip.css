@@ -1,6 +1,6 @@
 .tip {
-  height: 7vw;
   width: 15vw;
+  padding: 10px;
   position: fixed;
   right: 1vw;
   top: 1vw;
@@ -10,4 +10,5 @@
 
 .tip-p {
   margin: 2px;
+  text-align: center;
 }
