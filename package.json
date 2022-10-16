@@ -10,7 +10,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-keydown": "^1.9.7",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "terser": "^3.14.1",
     "source-map-loader": "^1.0.1",
     "ts-loader": "^8.0.0",
