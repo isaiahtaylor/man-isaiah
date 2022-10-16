@@ -34,7 +34,7 @@ const elements = [
   <HeaderLine>DESCRIPTION</HeaderLine>,
   <IL>Hi, I'm Isaiah Taylor, a software engineer living in North Idaho.</IL>,
   <Line />,
-  <IndentedImage width={200} src={`${S3_MANUAL_PREFIX}profile-test-50.jpg`}></IndentedImage>,
+  <IndentedImage width={200} src={`${S3_MANUAL_PREFIX}A7409191.jpg`}></IndentedImage>,
   <Line />,
   <IL>Here you will find some information about myself and my work,</IL>,
   <IL>laid out in the format of a <a href="https://en.wikipedia.org/wiki/Man_page">man page</a>. If you don't already know,</IL>,

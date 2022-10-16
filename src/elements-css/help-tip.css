@@ -4,8 +4,8 @@
   position: fixed;
   right: 1vw;
   top: 1vw;
-  background: white;
-  border: 2px dashed darkgray;
+  background: #1c2f50;
+  border: 2px dashed white;
 }
 
 .tip-p {
